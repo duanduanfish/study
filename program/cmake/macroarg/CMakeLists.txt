@@ -37,3 +37,5 @@ test_cmake_arg(arg1) # 传参个数必须大于等于形参，否则编译不过
 #CMake Error at CMakeLists.txt:36 (test_cmake_arg):
 #  test_cmake_arg Macro invoked with incorrect arguments for macro named:
 #  test_cmake_arg
+
+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
