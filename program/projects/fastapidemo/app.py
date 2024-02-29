@@ -5,7 +5,7 @@ app = FastAPI()
 
 class Item(BaseModel):
 	name: str
-	description: str
+	path: str
 	price: float
 
 @app.get("/")
@@ -19,3 +19,8 @@ def read_item(item_id: int, q: str = None):
 @app.put("/items/{item_id}")
 def update_item(item_id: int, item: Item):
 	return {"item_name": item.name, "item_id": item_id}
+
+# if you want to use path parameter, you need to add a path:path parameter to the decorator
+@app.get("/items/path/{path:path}")
+def read_path(path: str):
+	return {"path": path}
