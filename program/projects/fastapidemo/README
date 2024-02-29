@@ -2,3 +2,7 @@
 pip3 install uvicorn[standard]
 
 uvicorn app:app --reload
+
+Development tips:
+/redoc
+/docs
