@@ -6,3 +6,6 @@ uvicorn app:app --reload
 Development tips:
 /redoc
 /docs
+
+Authentication:
+http -a username:password localhost:8000/who

@@ -1,7 +1,15 @@
-﻿from fastapi import FastAPI
+﻿from fastapi import FastAPI, HTTPException
+from fastapi import Depends
+from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from pydantic import BaseModel
 
 app = FastAPI()
+
+basic : HTTPBasicCredentials = HTTPBasic()
+
+
+secret_username = "duanduan"
+secret_password = "ds"
 
 class Item(BaseModel):
 	name: str
@@ -24,3 +32,9 @@ def update_item(item_id: int, item: Item):
 @app.get("/items/path/{path:path}")
 def read_path(path: str):
 	return {"path": path}
+
+@app.get("/who")
+def get_user(creds : HTTPBasicCredentials = Depends(basic)):
+	if creds.username == secret_username and creds.password == secret_password:
+		return {'username': creds.username, 'password': creds.password}
+	raise HTTPException(status_code=401, detail="invalid user")
